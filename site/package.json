@@ -11,11 +11,17 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@react-spring/three": "^10.0.1",
+    "@react-three/drei": "^10.7.3",
+    "@react-three/fiber": "^9.3.0",
+    "@react-three/rapier": "^2.1.0",
+    "@splidejs/react-splide": "^0.7.12",
     "@tailwindcss/vite": "^4.1.11",
     "gsap": "^3.13.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "tailwindcss": "^4.1.11"
+    "tailwindcss": "^4.1.11",
+    "three": "^0.179.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
