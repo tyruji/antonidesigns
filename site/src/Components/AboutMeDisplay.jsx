@@ -21,15 +21,70 @@ export default function AboutMeDisplay({ part="header" }) {
     return () => window.removeEventListener('resize', measure);
   }, []);
   
+  function Logo({ src="", label="", link="" }) {
+    return (
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group flex flex-col items-center"
+      >
+        <img
+          src={src}
+          className="w-full h-auto object-contain hover:scale-120 transition cursor-pointer group-hover:translate-y-[-10px]"
+        />
+        
+        <span className="text-black font-semibold max-h-0 group-hover:max-h-10 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm">
+          {label}
+        </span>
+      </a>
+    );
+  }
+  
   if (part === "header") {
     return (
-      <div className="text-2xl sm:text-4xl md:text-5xl xl:text-6xl bg-white text-black p-8">
+      <div className="text-2xl sm:text-4xl md:text-5xl xl:text-6xl bg-white text-black p-8 space-y-[0.5em]">
         <h1>
           Antoni Ferkaluk
         </h1>
-        <p className="text-md sm:text-2xl md:text-4xl xl:text-5xl space-y-[1em]">
-          C# Python JavaScript React.js
-        </p>
+        
+        <div className="grid grid-cols-7 md:gap-2 md:max-w-2/3">
+          <Logo
+            src="/logos/csharp.svg"
+            label="C#"
+            link="https://learn.microsoft.com/en-us/dotnet/csharp/"
+          />
+          <Logo
+            src="/logos/python.svg"
+            label="Python"
+            link="https://www.python.org/"
+          />
+          <Logo
+            src="/logos/js.svg"
+            label="JavaScript"
+            link="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+          />
+          <Logo
+            src="/logos/react.svg"
+            label="React"
+            link="https://react.dev/"
+          />
+          <Logo
+            src="/logos/git.svg"
+            label="Git"
+            link="https://git-scm.com/"
+          />
+          <Logo
+            src="/logos/unity.svg"
+            label="Unity"
+            link="https://unity.com/"
+          />
+          <Logo
+            src="/logos/godot.svg"
+            label="Godot"
+            link="https://godotengine.org/"
+          />
+        </div>
       </div>
     );
   }
