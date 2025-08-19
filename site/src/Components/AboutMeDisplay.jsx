@@ -27,7 +27,7 @@ export default function AboutMeDisplay({ part="header" }) {
         <h1>
           Antoni Ferkaluk
         </h1>
-        <p>
+        <p className="text-md sm:text-2xl md:text-4xl xl:text-5xl space-y-[1em]">
           C# Python JavaScript React.js
         </p>
       </div>
