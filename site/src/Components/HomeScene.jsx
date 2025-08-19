@@ -32,7 +32,8 @@ function ThrowCube({pos=[0,0,0]}) {
             clamp(-y / aspect, -limitY, limitY),
             0,
           ],
-          rotation: [y / aspect, x / aspect, 0]
+          rotation: [y / aspect, x / aspect, 0],
+          scale: [1.2, 1.2, 1.2]
         })
       } else {
         // On release → fling with velocity but clamp position
@@ -44,6 +45,7 @@ function ThrowCube({pos=[0,0,0]}) {
           rotation: [y / aspect, x / aspect, 0],
           immediate: false,
           config: { mass: 0.1, tension: 10, friction: 5 },
+          scale: [1, 1, 1]
         })
       }
     },
