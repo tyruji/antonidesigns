@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
 import { useSpring, a } from '@react-spring/three'
 import { useGesture } from '@use-gesture/react'
@@ -18,7 +18,7 @@ function ThrowCube({pos=[0,0,0]}) {
   const [spring, api] = useSpring(() => ({
     scale: [1, 1, 1],
     position: pos,
-    rotation: [0, 1, 0],
+    rotation: [0, 0, 0],
     config: { mass: 1, tension: 200, friction: 10 },
   }))
 
@@ -43,14 +43,35 @@ function ThrowCube({pos=[0,0,0]}) {
           position: [targetX, targetY, 0],
           rotation: [y / aspect, x / aspect, 0],
           immediate: false,
-          config: { mass: 0.1, position: pos, tension: 10, friction: 5 },
+          config: { mass: 0.1, tension: 10, friction: 5 },
         })
       }
     },
     onHover: ({ hovering }) =>
-      api.start({ scale: hovering ? [1.2, 1.2, 1.2] : [1, 1, 1] }),
+      api.start({ scale: hovering ? [1.2, 1.2, 1.2] : [1, 1, 1] })
   })
 
+  // Initial random throw
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      const throwSpeed = 0.5 * (Math.random() + 1) * 2500;
+      const randX = (Math.random() - 0.5) * throwSpeed
+      const randY = (Math.random() - 0.5) * throwSpeed
+  
+      const targetX = clamp(randX / aspect, -limitX, limitX)
+      const targetY = clamp(randY / aspect, -limitY, limitY)
+  
+      api.start({
+        position: [targetX, targetY, 0],
+        rotation: [randY / aspect, randX / aspect, 0],
+        immediate: false, // set to false so it's animated, not instant
+        config: { mass: 0.1, tension: 10, friction: 5 },
+      })
+    }, 10)
+  
+    return () => clearTimeout(timeout) // cleanup on unmount
+  }, [])
+  
   return (
     <a.mesh {...spring} {...bind()}>
       <boxGeometry args={[1, 1, 1]} />

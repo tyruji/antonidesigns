@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { useGSAP } from '@gsap/react';
 import ProjectDisplay, { PROJECT_COUNT } from "../Components/ProjectDisplay.jsx";
 import HomeScene from "../Components/HomeScene.jsx";
+import AboutMeDisplay from "../Components/AboutMeDisplay.jsx";
 
 export default function HomePage() {
   const [section, setSection] = useState("home");
@@ -76,6 +77,14 @@ export default function HomePage() {
               </div>
             </div>
           )}
+          {section === "about me" && (
+            <div className="flex flex-col">
+              <AboutMeDisplay part="header" />
+              <div className="flex border-2 border-r-0 border-white">
+                
+              </div>
+            </div>
+          )}
         </div>
         
         <div className="z-20 w-fit flex flex-col bg-black border-2 border-white">
@@ -89,6 +98,9 @@ export default function HomePage() {
       <div className="relative flex flex-1 p-8 md:p-16">
         {section === "projects" && (
           <ProjectDisplay id={projectId} part="content" />
+        )}
+        {section === "about me" && (
+          <AboutMeDisplay part="content" />
         )}
       </div>
       

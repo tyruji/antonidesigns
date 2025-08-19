@@ -9,8 +9,8 @@ const projects = [
     link: "https://barely.lol",
     description: "Multi-currency budget tracker",
     images: [
-      "/barelylol/screen-barelylol.png",
       "/barelylol/ad1.png",
+      "/barelylol/screen-barelylol.png",
       "/barelylol/screen-barelylol2.png",
       "/barelylol/screen-barelylol3.png",
     ],
@@ -82,7 +82,7 @@ export default function ProjectDisplay({ id=0, part="header" }) {
   
   return (
     <div ref={containerRef} className="text-white w-fit flex justify-center sm:justify-start">
-      <Splide aria-label="Screenshots" className="">
+      <Splide key={id} aria-label="Screenshots" className="">
         {projects[id]?.images.map((src, idx) =>
           <SplideSlide key={idx} className="flex items-center justify-center">
             <img
