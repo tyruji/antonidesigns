@@ -147,7 +147,7 @@ export default function HomePage({ throwCube=true }) {
         </SectionWrapper>
       </div>
       
-      <div className="z-30 w-fit">
+      <div className="absolute bottom-0 left-0 z-30 w-fit p-4 md:p-8">
         <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
       </div>
     </div>
