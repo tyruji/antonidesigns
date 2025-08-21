@@ -90,7 +90,7 @@ export default function AboutMeDisplay({ part="header" }) {
   }
   
   return (
-    <div ref={containerRef} className="text-white w-fit flex justify-center sm:justify-start">
+    <div ref={containerRef} className="text-white w-fit h-1/2 flex justify-center sm:justify-start">
       <div className="flex flex-col justify-around text-md sm:text-2xl md:text-4xl xl:text-4xl">
         <div className="flex">
           <p>I've been programming since 14 years old, started out in game development and been growing ever since.</p>

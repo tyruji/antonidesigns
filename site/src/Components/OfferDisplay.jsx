@@ -33,7 +33,7 @@ export default function OfferDisplay({ part="header" }) {
   }
   
   return (
-    <div ref={containerRef} className="text-white w-fit flex justify-center sm:justify-start">
+    <div ref={containerRef} className="text-white w-fit flex h-full justify-center sm:justify-start">
       <div className="flex flex-col justify-center md:justify-end text-sm sm:text-xl md:text-xl md:w-3/4 xl:w-full xl:text-xl space-y-[1em]">
         
         <div className="flex items-center">
