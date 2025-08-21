@@ -82,7 +82,7 @@ export default function ProjectDisplay({ id=0, part="header" }) {
   
   return (
     <div ref={containerRef} className="text-white w-fit flex justify-center sm:justify-start">
-      <Splide key={id} aria-label="Screenshots" className="">
+      <Splide key={id} aria-label="Screenshots" className="w-full">
         {projects[id]?.images.map((src, idx) =>
           <SplideSlide key={idx} className="flex items-center justify-center">
             <img

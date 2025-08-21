@@ -4,8 +4,12 @@ import { useGSAP } from '@gsap/react';
 import ProjectDisplay, { PROJECT_COUNT } from "../Components/ProjectDisplay.jsx";
 import HomeScene from "../Components/HomeScene.jsx";
 import AboutMeDisplay from "../Components/AboutMeDisplay.jsx";
+import ContactDisplay from "../Components/ContactDisplay.jsx";
+import OfferDisplay from "../Components/OfferDisplay.jsx";
+import ButtonSpacer from "../Components/ButtonSpacer.jsx";
+import SectionWrapper from "../Components/SectionWrapper.jsx";
 
-export default function HomePage() {
+export default function HomePage({ throwCube=true }) {
   const [section, setSection] = useState("home");
   const [projectId, setProjectId] = useState(0);
   
@@ -37,7 +41,6 @@ export default function HomePage() {
           `
         }
       >
-        {/* {section === option && <span>*</span>} */}
         {option}
       </button>
     );
@@ -45,7 +48,8 @@ export default function HomePage() {
   
   return (
     <div className="relative flex flex-col w-full h-screen bg-black p-4 md:p-8 overflow-hidden">
-      {section === "home" && (
+
+      {section === "home" && throwCube && (
         <HomeScene />
       )}
       
@@ -63,48 +67,68 @@ export default function HomePage() {
       <div className="relative flex justify-between mt-10">
         {/* Currently displayed option contents */}
         <div className="w-full">
-
-          {section === "projects" && (
-            <div className="flex flex-col">
-              <ProjectDisplay id={projectId} part="header" />
-              <div className="flex border-2 border-r-0 border-white">
-                <Button
-                  onClick={() => setProjectId(Math.max(0, projectId-1))} 
-                  className="text-white">Previous</Button>
-                <Button
-                  onClick={() => setProjectId(Math.min(projectId+1, PROJECT_COUNT-1))} 
-                  className="text-white">Next</Button>
+          
+          <SectionWrapper section={section}>
+            {section === "projects" && (
+              <div className="flex flex-col">
+                <ProjectDisplay id={projectId} part="header" />
+                <div className="flex border-2 border-r-0 border-white">
+                  <Button
+                    onClick={() => setProjectId(Math.max(0, projectId-1))} 
+                    className="text-white">Previous</Button>
+                  <Button
+                    onClick={() => setProjectId(Math.min(projectId+1, PROJECT_COUNT-1))} 
+                    className="text-white">Next</Button>
+                </div>
               </div>
-            </div>
-          )}
-          {section === "about me" && (
-            <div className="flex flex-col">
-              <AboutMeDisplay part="header" />
-              <div className="flex border-2 border-r-0 border-white">
-                
+            )}
+            {section === "about me" && (
+              <div className="flex flex-col">
+                <AboutMeDisplay part="header" />
               </div>
-            </div>
-          )}
+            )}
+            {section === "contact" && (
+              <div className="flex flex-col">
+                <ContactDisplay part="header" />
+              </div>
+            )}
+            {section === "offer" && (
+              <div className="flex flex-col">
+                <OfferDisplay part="header" />
+              </div>
+            )}
+          </SectionWrapper>
         </div>
         
-        <div className="z-20 w-fit flex flex-col bg-black border-2 border-white">
+        <div className="px-2 w-fit bg-black border-2 border-white">
+          <ButtonSpacer />
+        </div>
+        
+        <div className="absolute right-0 top-0 z-20 w-fit flex flex-col bg-black border-2 border-white">
           <MenuButton />
           <MenuButton option="projects" />
-          <MenuButton option="about me" />     
+          <MenuButton option="about me" />
+          <MenuButton option="offer" /> 
           <MenuButton option="contact"/>
         </div>
       </div>
       
       <div className="relative flex flex-1 p-8 md:p-16">
-        {section === "projects" && (
-          <ProjectDisplay id={projectId} part="content" />
-        )}
-        {section === "about me" && (
-          <AboutMeDisplay part="content" />
-        )}
+        <SectionWrapper section={section}>
+          {section === "projects" && (
+            <ProjectDisplay id={projectId} part="content" />
+          )}
+          {section === "about me" && (
+            <AboutMeDisplay part="content" />
+          )}
+          {section === "contact" && (
+            <ContactDisplay part="content" />
+          )}
+          {section === "offer" && (
+            <OfferDisplay part="content" />
+          )}
+        </SectionWrapper>
       </div>
-      
-      
     </div>
   )
 }

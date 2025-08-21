@@ -1,8 +1,7 @@
 import { useRef, useState, useEffect } from "react";
-import ButtonSpacer from "./ButtonSpacer.jsx";
 
 // part is "header" or "content"
-export default function AboutMeDisplay({ part="header" }) {
+export default function ContactDisplay({ part="header" }) {
   const containerRef = useRef(null);
   const [imgHeight, setImgHeight] = useState(0);
   
@@ -45,62 +44,36 @@ export default function AboutMeDisplay({ part="header" }) {
     return (
       <div className="text-2xl sm:text-4xl md:text-5xl xl:text-6xl bg-white text-black p-8 space-y-[0.5em]">
         <h1>
-          Antoni Ferkaluk
+          Get in Touch
         </h1>
         
-        <div className="grid grid-cols-7 md:gap-2 md:max-w-2/3">
-          <Logo
-            src="/logos/csharp.svg"
-            label="C#"
-            link="https://learn.microsoft.com/en-us/dotnet/csharp/"
-          />
-          <Logo
-            src="/logos/python.svg"
-            label="Python"
-            link="https://www.python.org/"
-          />
-          <Logo
-            src="/logos/js.svg"
-            label="JavaScript"
-            link="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
-          />
-          <Logo
-            src="/logos/react.svg"
-            label="React"
-            link="https://react.dev/"
-          />
-          <Logo
-            src="/logos/git.svg"
-            label="Git"
-            link="https://git-scm.com/"
-          />
-          <Logo
-            src="/logos/unity.svg"
-            label="Unity"
-            link="https://unity.com/"
-          />
-          <Logo
-            src="/logos/godot.svg"
-            label="Godot"
-            link="https://godotengine.org/"
-          />
-        </div>
       </div>
+    );
+  }
+  
+  function Link({ link, text }) {
+    return ( 
+      <a
+        href={link}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <span className="underline pr-1">{text}</span>
+        <svg aria-hidden="true" fill="none"
+          className="inline h-[1em] stroke-2 stroke-white"
+          viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </a>
     );
   }
   
   return (
     <div ref={containerRef} className="text-white w-fit flex justify-center sm:justify-start">
-      <div className="flex flex-col justify-around text-md sm:text-2xl md:text-4xl xl:text-4xl">
-        <div className="flex">
-          <p>I've been programming since 14 years old, started out in game development and been growing ever since.</p>
-          <div className="px-4 text-black">
-            <ButtonSpacer />
-          </div>
-        </div>
-        <p>
-          I always strive for creativity, I love seeing my ideas come to life.
-        </p>
+      <div className="flex flex-col text-md sm:text-2xl md:text-4xl xl:text-5xl space-y-[1em]">
+        {/* <Link link="" text="LinkedIn"/> */}
+        <Link link="mailto:tyruji@gmail.com" text="tyruji@gmail.com"/>
       </div>
         
     </div>

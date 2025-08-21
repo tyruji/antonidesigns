@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
-import { Canvas, useThree } from '@react-three/fiber'
+import React, { useEffect, useRef } from 'react'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { useSpring, a } from '@react-spring/three'
 import { useGesture } from '@use-gesture/react'
+import { EffectComposer, Pixelation } from '@react-three/postprocessing'
 
 function ThrowCube({pos=[0,0,0]}) {
   const { size, viewport } = useThree()
@@ -82,24 +83,36 @@ function ThrowCube({pos=[0,0,0]}) {
   )
 }
 
+function PixelationEffect() {
+  const pixelRef = useRef()
+  const start = React.useRef(Date.now())
+
+  useFrame(() => {
+    if (!pixelRef.current) return
+    const elapsed = (Date.now() - start.current) / 500 // seconds
+    const duration = 2 // 2s animation
+    const t = Math.min(elapsed / duration, 1)
+    const value = 70 - t * (70 - 1)
+    pixelRef.current.granularity = Math.max(1, Math.floor(value))
+  })
+
+  return (
+    <EffectComposer>
+      <Pixelation ref={pixelRef} granularity={70} />
+    </EffectComposer>
+  )
+}
+
 export default function HomeScene() {
   return (
     <div className="absolute z-20 w-full h-full">
       <Canvas camera={{ position: [0, 0, 5] }}>
         <ambientLight intensity={Math.PI / 2} />
-        <spotLight
-          position={[10, 10, 10]}
-          angle={0.15}
-          penumbra={1}
-          decay={0}
-          intensity={Math.PI}
-        />
-        <pointLight
-          position={[-10, -10, -10]}
-          decay={0}
-          intensity={Math.PI}
-        />
+        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI}/>
+        <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI}/>
+
         <ThrowCube />
+        <PixelationEffect /> {/* isolated in-canvas */}
       </Canvas>
     </div>
   )
