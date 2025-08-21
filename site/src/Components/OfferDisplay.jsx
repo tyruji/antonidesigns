@@ -62,6 +62,9 @@ export default function OfferDisplay({ part="header" }) {
             <b>Fast and Lightweight</b>
             <span>Built from scratch with clean code for speed, I don't use website builders.</span>
           </div>
+          <div className="px-1">
+            <ButtonSpacer />
+          </div>
         </div>
         
         <div className="flex items-center">
