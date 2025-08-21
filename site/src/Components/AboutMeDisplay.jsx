@@ -90,7 +90,7 @@ export default function AboutMeDisplay({ part="header" }) {
   }
   
   return (
-    <div ref={containerRef} className="py-[2em] transition-colors ease-in-out text-primary w-fit h-1/2 flex justify-center sm:justify-start">
+    <div ref={containerRef} className="transition-colors ease-in-out text-primary w-fit h-1/2 flex justify-center sm:justify-start">
       <div className="flex flex-col justify-around text-md sm:text-xl md:text-4xl xl:text-4xl space-y-[1em]">
         <div className="flex">
           <p>I've been programming since 14 years old, started out in game development and been growing ever since.</p>
