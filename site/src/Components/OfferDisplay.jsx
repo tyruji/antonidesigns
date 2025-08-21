@@ -34,7 +34,7 @@ export default function OfferDisplay({ part="header" }) {
   return (
     <div ref={containerRef} className="transition-colors ease-in-out text-primary w-fit flex h-full justify-center sm:justify-start">
       <div className="flex flex-col justify-center md:justify-end md:w-3/4 xl:w-full"
-        style={{ fontSize: "clamp(0.9rem, 1.6vw, 1.8rem)" }}
+        style={{ fontSize: "clamp(0.8rem, 1.6vw, 1.6rem)" }}
       >
         
         <div className="flex items-center">
