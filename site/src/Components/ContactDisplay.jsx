@@ -73,7 +73,9 @@ export default function ContactDisplay({ part="header" }) {
     <div ref={containerRef} className="text-white w-fit flex justify-center sm:justify-start">
       <div className="flex flex-col text-md sm:text-2xl md:text-4xl xl:text-5xl space-y-[1em]">
         {/* <Link link="" text="LinkedIn"/> */}
-        <Link link="mailto:tyruji@gmail.com" text="tyruji@gmail.com"/>
+        <Link link="mailto:antoniferkaluk5@gmail.com" text="antoniferkaluk5@gmail.com"/>
+        <Link link="https://www.linkedin.com/in/antoni-ferkaluk/" text="LinkedIn" />
+        <Link link="https://github.com/tyruji/" text="GitHub" />
       </div>
         
     </div>
