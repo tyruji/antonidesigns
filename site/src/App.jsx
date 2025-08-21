@@ -49,7 +49,7 @@ const SquareAnimation = ({ onAnimationComplete }) => {
   return (
     <div
       ref={containerRef}
-      className="relative w-screen h-screen flex justify-center items-center overflow-hidden"
+      className="relative w-screen h-[100dvh] flex justify-center items-center overflow-hidden"
     >
       <div className="relative w-full h-full">
         {[...Array(numSquares)].map((_, i) => (
