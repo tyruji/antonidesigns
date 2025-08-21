@@ -73,7 +73,7 @@ function App() {
     // wait 200ms before showing content
     setTimeout(() => {
       setShowContent(true);
-    }, 10);
+    }, 100);
   };
 
   return (
