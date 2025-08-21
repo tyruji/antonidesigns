@@ -11,7 +11,7 @@ export default function PixelTransition({ onComplete }) {
     // Get container size
     const { clientWidth: width, clientHeight: height } = containerRef.current;
 
-    const pixelSize = 40; // pixel square size in px (tweak this)
+    const pixelSize = width/10; // pixel square size in px (tweak this)
     const cols = Math.ceil(width / pixelSize);
     const rows = Math.ceil(height / pixelSize);
 
@@ -58,7 +58,7 @@ export default function PixelTransition({ onComplete }) {
       {pixels.map((sq) => (
         <div
           key={sq.id}
-          className="pixel bg-black"
+          className="pixel bg-white"
           style={{
             position: "absolute",
             width: `${sq.width}px`,

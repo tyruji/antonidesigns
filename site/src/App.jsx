@@ -36,7 +36,7 @@ const SquareAnimation = ({ onAnimationComplete }) => {
     
     // final fade out
     tl.to(squares, {
-      opacity: 0,
+      opacity: 1,
       scale: 1,
       duration: 1.5,
       ease: "power2.inOut"
@@ -49,13 +49,13 @@ const SquareAnimation = ({ onAnimationComplete }) => {
   return (
     <div
       ref={containerRef}
-      className="relative w-screen h-screen flex justify-center items-center overflow-hidden bg-black"
+      className="relative w-screen h-screen flex justify-center items-center overflow-hidden"
     >
       <div className="relative w-full h-full">
         {[...Array(numSquares)].map((_, i) => (
           <div
             key={i}
-            className="absolute inset-0 square border-3 border-white"
+            className="absolute inset-0 square border-3 border-black"
           />
         ))}
       </div>
@@ -77,7 +77,7 @@ function App() {
   };
 
   return (
-    <div className="bg-black">
+    <div className="bg-white">
       {!showPixels && (
         <SquareAnimation onAnimationComplete={handleSquareComplete} />
       )}
