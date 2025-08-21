@@ -15,3 +15,9 @@ canvas {
   --color-primary: #FFFFFF;
   --color-secondary: #000000;
 }
+
+@layer base {
+  html, body, #root {
+    @apply bg-primary;
+  }
+}
