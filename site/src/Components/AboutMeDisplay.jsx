@@ -91,7 +91,7 @@ export default function AboutMeDisplay({ part="header" }) {
   
   return (
     <div ref={containerRef} className="transition-colors ease-in-out text-primary w-fit h-1/2 flex justify-center sm:justify-start">
-      <div className="flex flex-col justify-around text-md sm:text-2xl md:text-4xl xl:text-4xl">
+      <div className="flex flex-col justify-start text-md sm:text-2xl md:text-4xl xl:text-4xl">
         <div className="flex">
           <p>I've been programming since 14 years old, started out in game development and been growing ever since.</p>
           <div className="px-4 text-secondary">
@@ -101,7 +101,6 @@ export default function AboutMeDisplay({ part="header" }) {
         <p>
           I always strive for creativity, I love seeing my ideas come to life.
         </p>
-        <div className="h-6 w-6 bg-primary"/>
       </div>
         
     </div>
