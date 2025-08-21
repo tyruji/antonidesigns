@@ -64,7 +64,7 @@ export default function HomePage({ throwCube=true }) {
   }
   
   return (
-    <div className="relative flex flex-col w-full h-screen transition-colors ease-in-out bg-secondary p-4 md:p-8 overflow-hidden">
+    <div className="relative flex flex-col w-full h-[100dvh] transition-colors ease-in-out bg-secondary p-4 md:p-8 overflow-hidden">
 
       {section === "home" && throwCube && (
         <HomeScene isDark={theme === "dark"} />
