@@ -101,6 +101,7 @@ export default function AboutMeDisplay({ part="header" }) {
         <p>
           I always strive for creativity, I love seeing my ideas come to life.
         </p>
+        <div className="h-6 w-6 bg-primary"/>
       </div>
         
     </div>

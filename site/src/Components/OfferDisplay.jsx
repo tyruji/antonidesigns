@@ -75,6 +75,7 @@ export default function OfferDisplay({ part="header" }) {
             <span>Unique website designs made from scratch, not templates.</span>
           </div>
         </div>
+        <div className="h-6 w-6 bg-primary"/>
         
         
       </div>
