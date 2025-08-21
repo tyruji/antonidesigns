@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import ButtonSpacer from "./ButtonSpacer.jsx";
 
 // part is "header" or "content"
 export default function ContactDisplay({ part="header" }) {
@@ -50,14 +51,16 @@ export default function ContactDisplay({ part="header" }) {
   }
   
   return (
-    <div ref={containerRef} className="transition-colors ease-in-out text-primary w-fit flex justify-center sm:justify-start">
-      <div className="flex flex-col text-md sm:text-2xl md:text-4xl xl:text-5xl space-y-[1em]">
+    <div ref={containerRef} className="transition-colors ease-in-out text-primary h-full w-fit flex justify-center sm:justify-start">
+      <div className="flex flex-col justify-center text-md sm:text-2xl md:text-4xl xl:text-5xl space-y-[1em]">
         {/* <Link link="" text="LinkedIn"/> */}
-        <Link link="mailto:antoniferkaluk5@gmail.com" text="antoniferkaluk5@gmail.com"/>
         <Link link="https://www.linkedin.com/in/antoni-ferkaluk/" text="LinkedIn" />
         <Link link="https://github.com/tyruji/" text="GitHub" />
+        <Link link="mailto:antoniferkaluk5@gmail.com" text="antoniferkaluk5@gmail.com"/>
       </div>
-        
+      {/* <div className="">
+        <ButtonSpacer />
+      </div> */}
     </div>
   );
 }
