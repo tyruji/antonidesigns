@@ -44,7 +44,7 @@ const SquareAnimation = ({ onAnimationComplete }) => {
     
   }, [onAnimationComplete]);
 
-  if (done) return null;
+  if (done) return <div className="absolute inset-0 bg-primary" />; 
 
   return (
     <div
@@ -70,7 +70,7 @@ function App() {
   
   const handleSquareComplete = () => {
     setShowPixels(true);
-    // wait 200ms before showing content
+    // wait before showing content
     setTimeout(() => {
       setShowContent(true);
     }, 100);
