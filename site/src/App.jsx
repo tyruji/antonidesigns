@@ -36,7 +36,7 @@ const SquareAnimation = ({ onAnimationComplete }) => {
     
     // final fade out
     tl.to(squares, {
-      opacity: 1,
+      opacity: 0,
       scale: 1,
       duration: 1.5,
       ease: "power2.inOut"
