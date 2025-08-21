@@ -55,7 +55,7 @@ const SquareAnimation = ({ onAnimationComplete }) => {
         {[...Array(numSquares)].map((_, i) => (
           <div
             key={i}
-            className="absolute inset-0 square border-3 border-black"
+            className="absolute inset-0 square border-3 border-secondary"
           />
         ))}
       </div>
@@ -77,7 +77,7 @@ function App() {
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-primary">
       {!showPixels && (
         <SquareAnimation onAnimationComplete={handleSquareComplete} />
       )}

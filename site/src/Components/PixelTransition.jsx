@@ -58,7 +58,7 @@ export default function PixelTransition({ onComplete }) {
       {pixels.map((sq) => (
         <div
           key={sq.id}
-          className="pixel bg-white"
+          className="pixel bg-primary"
           style={{
             position: "absolute",
             width: `${sq.width}px`,

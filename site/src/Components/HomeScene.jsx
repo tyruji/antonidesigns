@@ -4,7 +4,7 @@ import { useSpring, a } from '@react-spring/three'
 import { useGesture } from '@use-gesture/react'
 import { EffectComposer, Pixelation } from '@react-three/postprocessing'
 
-function ThrowCube({pos=[0,0,0]}) {
+function ThrowCube({pos=[0,0,0], isDark}) {
   const { size, viewport } = useThree()
   const aspect = size.width / viewport.width
 
@@ -18,11 +18,22 @@ function ThrowCube({pos=[0,0,0]}) {
 
   const [spring, api] = useSpring(() => ({
     scale: [1, 1, 1],
-    position: pos,
-    rotation: [0, 0, 0],
+    color: isDark ? "white" : "black",
     config: { mass: 1, tension: 200, friction: 10 },
-  }))
-
+  }), []);
+  
+  useEffect(() => {
+    api.start({
+      position: pos,
+      rotation: [0,0,0],
+    });
+  }, []);
+  
+  
+  useEffect(() => {
+    api.start({ color: isDark ? "white" : "black" })
+  }, [isDark])
+  
   const bind = useGesture({
     onDrag: ({ offset: [x, y], velocity: [vx, vy], direction: [dx, dy], last }) => {
       if (!last) {
@@ -52,7 +63,7 @@ function ThrowCube({pos=[0,0,0]}) {
     },
     onHover: ({ hovering }) =>
       api.start({ scale: hovering ? [1.2, 1.2, 1.2] : [1, 1, 1] })
-  })
+  });
 
   // Initial random throw
   useEffect(() => {
@@ -73,12 +84,12 @@ function ThrowCube({pos=[0,0,0]}) {
     }, 10)
   
     return () => clearTimeout(timeout) // cleanup on unmount
-  }, [])
+  }, []);
   
   return (
     <a.mesh {...spring} {...bind()}>
       <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={'white'} />
+      <a.meshStandardMaterial color={spring.color} />
     </a.mesh>
   )
 }
@@ -103,7 +114,7 @@ function PixelationEffect() {
   )
 }
 
-export default function HomeScene() {
+export default function HomeScene({isDark}) {
   return (
     <div className="absolute z-20 w-full h-full">
       <Canvas camera={{ position: [0, 0, 5] }}>
@@ -111,7 +122,7 @@ export default function HomeScene() {
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI}/>
         <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI}/>
 
-        <ThrowCube />
+        <ThrowCube isDark={isDark}/>
         <PixelationEffect /> {/* isolated in-canvas */}
       </Canvas>
     </div>

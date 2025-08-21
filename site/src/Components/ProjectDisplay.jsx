@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
+import { createPortal } from "react-dom";
 
 const projects = [
   // barely.lol
@@ -53,7 +54,7 @@ export default function ProjectDisplay({ id=0, part="header" }) {
   
   if (part === "header") {
     return (
-      <div className="text-2xl sm:text-4xl md:text-5xl xl:text-6xl bg-white text-black p-8">
+      <div className="transition-colors ease-in-out text-2xl sm:text-4xl md:text-5xl xl:text-6xl bg-primary text-secondary p-8">
         <div className="">
           <a
             href={projects[id]?.link}
@@ -62,7 +63,7 @@ export default function ProjectDisplay({ id=0, part="header" }) {
           >
             <span className="underline pr-1">{projects[id]?.header}</span>
             <svg aria-hidden="true" fill="none"
-              className="inline h-[1em] stroke-2 stroke-black"
+              className="inline h-[1em] stroke-2 stroke-secondary"
               viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
             >
               <path d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" strokeLinecap="round" strokeLinejoin="round" />
@@ -81,7 +82,7 @@ export default function ProjectDisplay({ id=0, part="header" }) {
   }
   
   return (
-    <div ref={containerRef} className="text-white w-fit flex justify-center sm:justify-start">
+    <div ref={containerRef} className="transition-colors ease-in-out text-primary w-fit flex justify-center sm:justify-start">
       <Splide key={id} aria-label="Screenshots" className="w-full">
         {projects[id]?.images.map((src, idx) =>
           <SplideSlide key={idx} className="flex items-center justify-center">
@@ -101,7 +102,7 @@ export default function ProjectDisplay({ id=0, part="header" }) {
         )}  
       </Splide>
       
-      {popup && (
+      {popup && createPortal(
         <div
           className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center"
           onClick={() => setPopup(null)}
@@ -111,7 +112,8 @@ export default function ProjectDisplay({ id=0, part="header" }) {
             src={popup}
             alt="popup"
           />
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

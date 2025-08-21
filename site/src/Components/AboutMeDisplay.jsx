@@ -31,10 +31,10 @@ export default function AboutMeDisplay({ part="header" }) {
       >
         <img
           src={src}
-          className="w-full h-auto object-contain hover:scale-120 transition cursor-pointer group-hover:translate-y-[-10px]"
+          className="ease-in-out invert dark:invert-0 w-full h-auto object-contain hover:scale-120 transition cursor-pointer group-hover:translate-y-[-10px]"
         />
         
-        <span className="text-black font-semibold max-h-0 group-hover:max-h-10 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm">
+        <span className="ease-in-out text-secondary font-semibold max-h-0 group-hover:max-h-10 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm">
           {label}
         </span>
       </a>
@@ -43,7 +43,7 @@ export default function AboutMeDisplay({ part="header" }) {
   
   if (part === "header") {
     return (
-      <div className="text-2xl sm:text-4xl md:text-5xl xl:text-6xl bg-white text-black p-8 space-y-[0.5em]">
+      <div className="transition-colors ease-in-out text-2xl sm:text-4xl md:text-5xl xl:text-6xl bg-primary text-secondary p-8 space-y-[0.5em]">
         <h1>
           Antoni Ferkaluk
         </h1>
@@ -90,11 +90,11 @@ export default function AboutMeDisplay({ part="header" }) {
   }
   
   return (
-    <div ref={containerRef} className="text-white w-fit h-1/2 flex justify-center sm:justify-start">
+    <div ref={containerRef} className="transition-colors ease-in-out text-primary w-fit h-1/2 flex justify-center sm:justify-start">
       <div className="flex flex-col justify-around text-md sm:text-2xl md:text-4xl xl:text-4xl">
         <div className="flex">
           <p>I've been programming since 14 years old, started out in game development and been growing ever since.</p>
-          <div className="px-4 text-black">
+          <div className="px-4 text-secondary">
             <ButtonSpacer />
           </div>
         </div>

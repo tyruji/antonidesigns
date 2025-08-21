@@ -8,10 +8,27 @@ import ContactDisplay from "../Components/ContactDisplay.jsx";
 import OfferDisplay from "../Components/OfferDisplay.jsx";
 import ButtonSpacer from "../Components/ButtonSpacer.jsx";
 import SectionWrapper from "../Components/SectionWrapper.jsx";
+import ThemeToggle from "../Components/ThemeToggle.jsx";
 
 export default function HomePage({ throwCube=true }) {
   const [section, setSection] = useState("home");
   const [projectId, setProjectId] = useState(0);
+  const [theme, setTheme] = useState("light"); // default dark
+
+  // Apply or remove "dark" class on html tag
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === "dark") {
+      root.classList.add("dark");
+    } else {
+      root.classList.remove("dark");
+    }
+  }, [theme]);
+
+  function toggleTheme() {
+    setTheme(theme === "dark" ? "light" : "dark");
+  }
+  
   
   function Button({ children, onClick }) {
     return (
@@ -19,8 +36,8 @@ export default function HomePage({ throwCube=true }) {
         onClick={onClick}
         className="
           w-full p-3
-          text-xl sm:text-3xl md:text-4xl xl:text-5xl
-          text-white bg-black hover:text-black hover:bg-white
+          text-xl sm:text-3xl md:text-4xl xl:text-5xl transition-colors ease-in-out 
+          text-primary bg-secondary hover:text-secondary hover:bg-primary
           cursor-pointer"
       >
         {children}
@@ -33,10 +50,10 @@ export default function HomePage({ throwCube=true }) {
       <button
         onClick={() => setSection(option)}
         className={`
-          w-full p-3
+          w-full p-3 transition-colors ease-in-out 
           text-xl sm:text-3xl md:text-4xl xl:text-5xl
-          ${section === option ? "text-black bg-white"
-           : "text-white bg-black hover:text-black hover:bg-white"}
+          ${section === option ? "text-secondary bg-primary"
+           : "text-primary bg-secondary hover:text-secondary hover:bg-primary"}
           cursor-pointer
           `
         }
@@ -47,19 +64,19 @@ export default function HomePage({ throwCube=true }) {
   }
   
   return (
-    <div className="relative flex flex-col w-full h-screen bg-black p-4 md:p-8 overflow-hidden">
+    <div className="relative flex flex-col w-full h-screen transition-colors ease-in-out bg-secondary p-4 md:p-8 overflow-hidden">
 
       {section === "home" && throwCube && (
-        <HomeScene />
+        <HomeScene isDark={theme === "dark"} />
       )}
       
       {/* Border Frame */}
       <div className="p-8 md:p-16 absolute inset-0 pointer-events-none">
-        <div className="border-2 border-white h-full" />
+        <div className="border-2 border-primary h-full" />
       </div>
       
-      <div className="relative bg-black border-2 border-white p-3 max-w-2/3">
-        <h1 className="text-2xl sm:text-4xl md:text-5xl xl:text-6xl text-white">
+      <div className="relative bg-secondary border-2 border-primary p-3 max-w-2/3">
+        <h1 className="text-2xl sm:text-4xl md:text-5xl xl:text-6xl text-primary">
           I'm Antoni, a developer and designer.
         </h1>        
       </div>
@@ -72,13 +89,13 @@ export default function HomePage({ throwCube=true }) {
             {section === "projects" && (
               <div className="flex flex-col">
                 <ProjectDisplay id={projectId} part="header" />
-                <div className="flex border-2 border-r-0 border-white">
+                <div className="flex border-2 border-r-0 border-primary">
                   <Button
                     onClick={() => setProjectId(Math.max(0, projectId-1))} 
-                    className="text-white">Previous</Button>
+                    className="text-primary">Previous</Button>
                   <Button
                     onClick={() => setProjectId(Math.min(projectId+1, PROJECT_COUNT-1))} 
-                    className="text-white">Next</Button>
+                    className="text-primary">Next</Button>
                 </div>
               </div>
             )}
@@ -100,11 +117,11 @@ export default function HomePage({ throwCube=true }) {
           </SectionWrapper>
         </div>
         
-        <div className="px-2 w-fit bg-black border-2 border-white">
+        <div className="px-2 w-fit bg-secondary border-2 border-primary">
           <ButtonSpacer />
         </div>
         
-        <div className="absolute right-0 top-0 z-20 w-fit flex flex-col bg-black border-2 border-white">
+        <div className="absolute right-0 top-0 z-20 w-fit flex flex-col bg-secondary border-2 border-primary">
           <MenuButton />
           <MenuButton option="projects" />
           <MenuButton option="about me" />
@@ -128,6 +145,10 @@ export default function HomePage({ throwCube=true }) {
             <OfferDisplay part="content" />
           )}
         </SectionWrapper>
+      </div>
+      
+      <div className="z-30 w-fit">
+        <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
       </div>
     </div>
   )

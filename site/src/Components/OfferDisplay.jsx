@@ -23,7 +23,7 @@ export default function OfferDisplay({ part="header" }) {
   
   if (part === "header") {
     return (
-      <div className="text-2xl sm:text-4xl md:text-5xl xl:text-6xl bg-white text-black p-8 space-y-[0.5em]">
+      <div className="transition-colors ease-in-out text-2xl sm:text-4xl md:text-5xl xl:text-6xl bg-primary text-secondary p-8 space-y-[0.5em]">
         <h1>
           My Approach
         </h1>
@@ -33,7 +33,7 @@ export default function OfferDisplay({ part="header" }) {
   }
   
   return (
-    <div ref={containerRef} className="text-white w-fit flex h-full justify-center sm:justify-start">
+    <div ref={containerRef} className="transition-colors ease-in-out text-primary w-fit flex h-full justify-center sm:justify-start">
       <div className="flex flex-col justify-center md:justify-end text-sm sm:text-xl md:text-xl md:w-3/4 xl:w-full xl:text-xl space-y-[1em]">
         
         <div className="flex items-center">
