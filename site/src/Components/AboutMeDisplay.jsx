@@ -90,7 +90,7 @@ export default function AboutMeDisplay({ part="header" }) {
   }
   
   return (
-    <div ref={containerRef} className="transition-colors ease-in-out text-primary w-fit h-1/2 flex justify-center sm:justify-start">
+    <div ref={containerRef} className="-mt-1 transition-colors ease-in-out text-primary w-fit h-1/2 flex">
       <div
         className="flex flex-col justify-start space-y-[1em]"
         style={{ fontSize: "clamp(0.8rem, 1.6vw, 1.6rem)" }}
