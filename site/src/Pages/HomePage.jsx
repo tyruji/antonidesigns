@@ -88,15 +88,7 @@ export default function HomePage({ throwCube=true }) {
           <SectionWrapper section={section}>
             {section === "projects" && (
               <div className="flex flex-col">
-                <ProjectDisplay id={projectId} part="header" />
-                <div className="flex border-2 border-r-0 border-primary">
-                  <Button
-                    onClick={() => setProjectId(Math.max(0, projectId-1))} 
-                    className="text-primary">Previous</Button>
-                  <Button
-                    onClick={() => setProjectId(Math.min(projectId+1, PROJECT_COUNT-1))} 
-                    className="text-primary">Next</Button>
-                </div>
+                <ProjectDisplay projectId={projectId} setProjectId={setProjectId} part="header" />
               </div>
             )}
             {section === "about me" && (
@@ -133,7 +125,7 @@ export default function HomePage({ throwCube=true }) {
       <div className="relative flex flex-1 p-8 md:p-16">
         <SectionWrapper section={section}>
           {section === "projects" && (
-            <ProjectDisplay id={projectId} part="content" />
+            <ProjectDisplay projectId={projectId} setProjectId={setProjectId} part="content" />
           )}
           {section === "about me" && (
             <AboutMeDisplay part="content" />
