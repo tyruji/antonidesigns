@@ -48,7 +48,10 @@ export default function HomePage({ throwCube=true }) {
   function MenuButton({ option="home" }) {
     return (
       <button
-        onClick={() => setSection(option)}
+        onClick={() => {
+          setProjectId(0);
+          setSection(option);
+        }}
         className={`
           w-full p-3 transition-colors ease-in-out 
           text-xl sm:text-3xl md:text-4xl xl:text-5xl
@@ -122,7 +125,7 @@ export default function HomePage({ throwCube=true }) {
         </div>
       </div>
       
-      <div className="relative flex flex-1 p-8 md:p-16">
+      <div className="relative flex flex-1 px-8 md:px-16">
         <SectionWrapper section={section}>
           {section === "projects" && (
             <ProjectDisplay projectId={projectId} setProjectId={setProjectId} part="content" />

@@ -4,6 +4,8 @@ import '@splidejs/react-splide/css';
 import { createPortal } from "react-dom";
 import DraggableTimeline from "./DraggableTimeline.jsx";
 import SectionWrapper from "./SectionWrapper.jsx";
+import { CSharpLogo, GodotLogo, JavaScriptLogo, ReactLogo, UnityLogo } from "./Logos.jsx";
+import ButtonSpacer from "./ButtonSpacer.jsx";
 
 const projects = [
   // jakub ros tutor
@@ -17,6 +19,7 @@ const projects = [
       "/korkiros/screen-korkiros1.png",
       "/korkiros/screen-korkiros2.png",
     ],
+    stack: [<JavaScriptLogo />, <ReactLogo />],
   },
   // barely.lol
   {
@@ -30,6 +33,7 @@ const projects = [
       "/barelylol/screen-barelylol2.png",
       "/barelylol/screen-barelylol3.png",
     ],
+    stack: [<CSharpLogo />, <JavaScriptLogo />, <ReactLogo />],
   },
   // Slime Ball Hop
   {
@@ -37,12 +41,8 @@ const projects = [
     link: "https://tyruji.itch.io/slime-ball-hop",
     date: new Date(2024, 7, 26),
     description: "Arcade Indie Game",
-    images: [
-      "/barelylol/ad1.png",
-      "/barelylol/screen-barelylol.png",
-      "/barelylol/screen-barelylol2.png",
-      "/barelylol/screen-barelylol3.png",
-    ],
+    video: "previews/SlimeBallHop.webm",
+    stack: [<CSharpLogo />, <GodotLogo />],
   },
   // Square Connect
   {
@@ -50,12 +50,8 @@ const projects = [
     link: "https://tyruji.itch.io/square-connect",
     date: new Date(2024, 7, 20),
     description: "Arcade Indie Game",
-    images: [
-      "/barelylol/ad1.png",
-      "/barelylol/screen-barelylol.png",
-      "/barelylol/screen-barelylol2.png",
-      "/barelylol/screen-barelylol3.png",
-    ],
+    video: "previews/SquareConnect.webm",
+    stack: [<CSharpLogo />, <GodotLogo />],
   },
   // Hospital Trip
   {
@@ -63,12 +59,8 @@ const projects = [
     link: "https://tyruji.itch.io/hospital-trip",
     date: new Date(2024, 6),
     description: "Arcade Indie Game",
-    images: [
-      "/barelylol/ad1.png",
-      "/barelylol/screen-barelylol.png",
-      "/barelylol/screen-barelylol2.png",
-      "/barelylol/screen-barelylol3.png",
-    ],
+    video: "previews/HospitalTrip.webm",
+    stack: [<CSharpLogo />, <GodotLogo />],
   },
   // Mondee's Gamble
   {
@@ -76,12 +68,8 @@ const projects = [
     link: "https://tyruji.itch.io/mondees-gamble",
     date: new Date(2024, 1),
     description: "Arcade Indie Game",
-    images: [
-      "/barelylol/ad1.png",
-      "/barelylol/screen-barelylol.png",
-      "/barelylol/screen-barelylol2.png",
-      "/barelylol/screen-barelylol3.png",
-    ],
+    video: "previews/MondeesGamble.webm",
+    stack: [<CSharpLogo />, <GodotLogo />],
   },
   // Raise The Barrier
   {
@@ -89,12 +77,8 @@ const projects = [
     link: "https://drive.google.com/drive/folders/1J5H5lUBvzXyA-j4_x0GxI7Kzx1noRuA9",
     date: new Date(2022, 4),
     description: "Arcade Indie Game",
-    images: [
-      "/barelylol/ad1.png",
-      "/barelylol/screen-barelylol.png",
-      "/barelylol/screen-barelylol2.png",
-      "/barelylol/screen-barelylol3.png",
-    ],
+    video: "previews/RaiseTheBarrier.webm",
+    stack: [<CSharpLogo />, <UnityLogo />],
   },
   // Cook That Throws Dishes
   {
@@ -102,12 +86,8 @@ const projects = [
     link: "https://drive.google.com/drive/folders/1LG-YTTUnR7GPiNIT9YcWWWmuOjI_AiF-",
     date: new Date(2021, 6),
     description: "Arcade Indie Game",
-    images: [
-      "/barelylol/ad1.png",
-      "/barelylol/screen-barelylol.png",
-      "/barelylol/screen-barelylol2.png",
-      "/barelylol/screen-barelylol3.png",
-    ],
+    video: "previews/CookThatThrowsDishes.webm",
+    stack: [<CSharpLogo />, <UnityLogo />],
   },
   // Walk In The Room
   {
@@ -115,12 +95,8 @@ const projects = [
     link: "https://drive.google.com/drive/folders/1vmyg7Wiz3dwIEEYHnx4MZC0yJBbtJGvP",
     date: new Date(2021, 4),
     description: "Arcade Indie Game",
-    images: [
-      "/barelylol/ad1.png",
-      "/barelylol/screen-barelylol.png",
-      "/barelylol/screen-barelylol2.png",
-      "/barelylol/screen-barelylol3.png",
-    ],
+    video: "previews/WalkInTheRoom.webm",
+    stack: [<CSharpLogo />, <UnityLogo />],
   },
   // Dont Panic
   {
@@ -128,12 +104,8 @@ const projects = [
     link: "https://tyruji.itch.io/dont-panic",
     date: new Date(2020, 6),
     description: "Arcade Indie Game",
-    images: [
-      "/barelylol/ad1.png",
-      "/barelylol/screen-barelylol.png",
-      "/barelylol/screen-barelylol2.png",
-      "/barelylol/screen-barelylol3.png",
-    ],
+    video: "previews/DontPanic.webm",
+    stack: [<CSharpLogo />, <UnityLogo />],
   },
   // Build In The Dark
   {
@@ -141,12 +113,8 @@ const projects = [
     link: "https://tyruji.itch.io/build-in-the-dark",
     date: new Date(2020, 3),
     description: "Arcade Indie Game",
-    images: [
-      "/barelylol/ad1.png",
-      "/barelylol/screen-barelylol.png",
-      "/barelylol/screen-barelylol2.png",
-      "/barelylol/screen-barelylol3.png",
-    ],
+    video: "previews/BuildInTheDark.webm",
+    stack: [<CSharpLogo />, <UnityLogo />],
   },
 ];
 
@@ -175,57 +143,80 @@ export default function ProjectDisplay({ projectId=0, setProjectId, part="header
   
   if (part === "header") {
     return (
-      <div className="transition-colors ease-in-out text-2xl sm:text-4xl md:text-5xl xl:text-6xl bg-primary text-secondary p-8">
-        <DraggableTimeline projects={projects} projectId={projectId} setProjectId={setProjectId} />
-        __IN PROGRESS
-        
-        {/* <div className="">
-          <a
-            href={projects[id]?.link}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <span className="underline pr-1">{projects[id]?.name}</span>
-            <svg aria-hidden="true" fill="none"
-              className="inline h-[1em] stroke-2 stroke-secondary"
-              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </a>
-        </div> */}
-        
-        {/* <div className="text-xl sm:text-3xl md:text-4xl xl:text-5xl">
-          <h2>
-            {projects[id]?.description}
-          </h2>
-        </div> */}
-        
+      <div className="transition-colors ease-in-out text-2xl sm:text-4xl md:text-5xl xl:text-6xl bg-primary text-secondary p-6">
+        <DraggableTimeline projects={projects} projectId={projectId} setProjectId={setProjectId} />  
       </div>
     );
   }
   
   return (
-    <div ref={containerRef} className="transition-colors ease-in-out text-primary w-fit flex justify-center sm:justify-start">
+    <div ref={containerRef} className="py-2 transition-colors ease-in-out text-primary w-fit flex justify-center sm:justify-start">
       <SectionWrapper section={projectId}>
-        <Splide key={projectId} aria-label="Screenshots" className="w-full">
-          {projects[projectId]?.images.map((src, idx) =>
-            <SplideSlide key={idx} className="flex items-center justify-center">
-              <img
-                className="cursor-pointer"
-                style={{
-                  height: imgHeight ? (.8 * imgHeight) + 'px' : undefined,  // "auto" at first render (SSR-safe)
-                  maxHeight: '90vh', // Still protect against way-too-large
-                  width: "auto",     // Don't stretch horizontally
-                  objectFit: "contain"
-                }}
-                src={src}
-                onClick={() => setPopup(src)}
-                alt={idx}
-              />
-            </SplideSlide>
-          )}  
-        </Splide>
+        <div className="flex justify-between w-full">
+          <div className="text-xl sm:text-3xl md:text-4xl xl:text-5xl">
+            <a
+              href={projects[projectId]?.link}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <span className="underline pr-1">{projects[projectId]?.name}</span>
+              <svg aria-hidden="true" fill="none"
+                className="inline h-[1em] stroke-2 stroke-primary"
+                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </a>
+            <h2 className="text-sm sm:text-md md:text-xl xl:text-2xl">
+              {projects[projectId]?.description}
+            </h2>
+          </div>
+          
+          <ButtonSpacer />
+        </div>
+        
+        <div className="flex my-3">
+          <div className="flex z-20 absolute">
+            {projects[projectId].stack.map((l, i) => {
+              return <div className="w-7 md:w-10">
+                  {l}
+                </div>
+            })}
+          </div>
+        </div>
+      
+        {projects[projectId].images ? (
+          <Splide key={projectId} aria-label="Screenshots" className="w-full">
+            {projects[projectId]?.images.map((src, idx) =>
+              <SplideSlide key={idx} className="flex items-center justify-center">
+                <img
+                  className="cursor-pointer"
+                  style={{
+                    height: imgHeight ? (.8 * imgHeight) + 'px' : undefined,  // "auto" at first render (SSR-safe)
+                    maxHeight: '90vh', // Still protect against way-too-large
+                    width: "auto",     // Don't stretch horizontally
+                    objectFit: "contain"
+                  }}
+                  src={src}
+                  onClick={() => setPopup(src)}
+                  alt={idx}
+                />
+              </SplideSlide>
+            )}  
+          </Splide>
+        ) : (
+          <video
+            style={{
+              height: imgHeight ? (.8 * imgHeight-10) + 'px' : undefined,  // "auto" at first render (SSR-safe)
+              maxHeight: '90vh', // Still protect against way-too-large
+              width: "auto",     // Don't stretch horizontally
+              objectFit: "contain"
+            }}
+            autoPlay loop muted playsInline
+          >
+            <source src={projects[projectId].video} type="video/webm" />
+          </video>
+        )}
       </SectionWrapper>
       
       {popup && createPortal(

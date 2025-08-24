@@ -7,9 +7,10 @@ export default function DraggableTimeline({ projects, projectId, setProjectId })
   const [xPos, setXPos] = useState(0);       // current interpolated position
   const [targetX, setTargetX] = useState(0); // mouse-driven target
   const [positions, setPositions] = useState([]);
+  const [minSpace, setMinSpace] = useState(100);
   const dragStartX = useRef(0);     // mouse down position
   const dragStartPos = useRef(0);   // handle position when dragging starts
-
+  
   // Calculate project positions once timeline ref is measured
   useEffect(() => {
     if (timelineRef.current) {
@@ -30,7 +31,7 @@ export default function DraggableTimeline({ projects, projectId, setProjectId })
       const minDiff = Math.min(...diffs);
       
       const maxSpace = width / 2;
-      const minSpace = width / 4;
+      setMinSpace(Math.max(width / 4, 100));
       
       let last_ts = maxDate;
       let last_pos = 0;
@@ -96,7 +97,7 @@ export default function DraggableTimeline({ projects, projectId, setProjectId })
     <div className="h-full w-full flex flex-col items-center justify-center">
       <div
         ref={timelineRef}
-        className="z-20 relative py-10 w-full rounded cursor-grab active:cursor-grabbing"
+        className="z-20 relative py-10 w-full rounded cursor-grab active:cursor-grabbing overflow-hidden"
         onMouseMove={onMouseMove}
         onMouseLeave={() => {
           setIsDragging(false);
@@ -112,9 +113,7 @@ export default function DraggableTimeline({ projects, projectId, setProjectId })
           dragStartPos.current = xPos;
         }}
       >
-        <div className="bg-secondary w-full h-2">
-          
-        </div>
+        <div className="w-full bg-secondary h-2" />
         <div
           className="absolute -translate-x-1/2 left-1/2 top-1/2 w-6 h-6 bg-secondary rounded-full transform -translate-y-1/2 transition-colors"
         >
@@ -141,8 +140,8 @@ export default function DraggableTimeline({ projects, projectId, setProjectId })
           return (
             <div
               key={i}
-              style={{ left: `${pos - xPos}px`  }}
-              className="flex flex-col space-y-2 h-full items-center absolute text-xs text-nowrap -translate-x-1/2"
+              style={{ left: `${pos - xPos}px`, fontSize: `${i === projectId ? minSpace/10 : minSpace/15}px`  }}
+              className="flex flex-col space-y-2 h-full items-center absolute text-nowrap -translate-x-1/2"
             >
               <span>
                 {projects[i].date.toLocaleString("en-US", { year: "numeric", month: "short" })}
