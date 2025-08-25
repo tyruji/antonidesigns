@@ -4,6 +4,11 @@ canvas {
   touch-action: none;
 }
 
+* {
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
