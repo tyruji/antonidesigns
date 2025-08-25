@@ -124,8 +124,8 @@ export default function HomePage({ throwCube=true }) {
           <MenuButton option="contact"/>
         </div>
       </div>
-      
-      <div className="relative flex flex-1 px-8 md:px-16">
+
+      <div className="w-full h-full px-8 md:px-16 pb-8 md:pb-16">
         <SectionWrapper section={section}>
           {section === "projects" && (
             <ProjectDisplay projectId={projectId} setProjectId={setProjectId} part="content" />

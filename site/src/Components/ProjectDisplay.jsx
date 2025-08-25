@@ -123,22 +123,26 @@ export const PROJECT_COUNT = projects.length;
 // part is "header" or "content"
 export default function ProjectDisplay({ projectId=0, setProjectId, part="header" }) {
   const [popup, setPopup] = useState(null);
-  const containerRef = useRef(null);
   const [imgHeight, setImgHeight] = useState(0);
+  const containerRef = useRef(null);
+  const headerRef = useRef(null);
   
   useEffect(() => {
     function measure() {
-      if (containerRef.current) {
-        // Where is the carousel in the viewport?
-        const rect = containerRef.current.getBoundingClientRect();
-        // Remaining height = window height - distance from top of carousel container
-        const remaining = window.innerHeight - rect.top - 32; // -32px for a little safety margin/padding
-        setImgHeight(Math.max(remaining, 100)); // Don't go below 100px
+      if (containerRef.current && headerRef.current) {
+        const containerRect = containerRef.current.getBoundingClientRect();
+        const headerRect = headerRef.current.getBoundingClientRect();
+  
+        // remaining space = viewport bottom - top of container - header height - margin
+        const remaining = window.innerHeight - containerRect.top - headerRect.height - 64;
+  
+        setImgHeight(Math.max(remaining, 100));
       }
     }
+  
     measure();
-    window.addEventListener('resize', measure);
-    return () => window.removeEventListener('resize', measure);
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
   }, []);
   
   if (part === "header") {
@@ -150,9 +154,9 @@ export default function ProjectDisplay({ projectId=0, setProjectId, part="header
   }
   
   return (
-    <div ref={containerRef} className="py-2 transition-colors ease-in-out text-primary w-fit flex justify-center sm:justify-start">
-      <SectionWrapper section={projectId}>
-        <div className="flex justify-between w-full">
+    <div ref={containerRef} className="py-2 h-full transition-colors ease-in-out text-primary w-fit flex justify-center sm:justify-start">
+      <SectionWrapper section={projectId} className="h-full">
+        <div ref={headerRef} className="flex justify-between w-full">
           <div className="text-xl sm:text-3xl md:text-4xl xl:text-5xl">
             <a
               href={projects[projectId]?.link}
@@ -176,7 +180,7 @@ export default function ProjectDisplay({ projectId=0, setProjectId, part="header
         </div>
         
         <div className="flex my-3">
-          <div className="flex z-20 absolute">
+          <div className="flex z-20">
             {projects[projectId].stack.map((l, i) => {
               return <div className="w-7 md:w-10">
                   {l}
@@ -186,17 +190,16 @@ export default function ProjectDisplay({ projectId=0, setProjectId, part="header
         </div>
       
         {projects[projectId].images ? (
-          <Splide key={projectId} aria-label="Screenshots" className="w-full">
+          <Splide
+            key={projectId}
+            aria-label="Screenshots"
+            className="flex items-center justify-end h-full"
+            options={{ autoHeight: true }}
+          >
             {projects[projectId]?.images.map((src, idx) =>
-              <SplideSlide key={idx} className="flex items-center justify-center">
+              <SplideSlide key={idx} className="flex items-start justify-center w-full">
                 <img
-                  className="cursor-pointer"
-                  style={{
-                    height: imgHeight ? (.8 * imgHeight) + 'px' : undefined,  // "auto" at first render (SSR-safe)
-                    maxHeight: '90vh', // Still protect against way-too-large
-                    width: "auto",     // Don't stretch horizontally
-                    objectFit: "contain"
-                  }}
+                  className="cursor-pointer object-contain h-1/4"
                   src={src}
                   onClick={() => setPopup(src)}
                   alt={idx}
@@ -206,12 +209,7 @@ export default function ProjectDisplay({ projectId=0, setProjectId, part="header
           </Splide>
         ) : (
           <video
-            style={{
-              height: imgHeight ? (.8 * imgHeight-10) + 'px' : undefined,  // "auto" at first render (SSR-safe)
-              maxHeight: '90vh', // Still protect against way-too-large
-              width: "auto",     // Don't stretch horizontally
-              objectFit: "contain"
-            }}
+            className="object-contain"
             autoPlay loop muted playsInline
           >
             <source src={projects[projectId].video} type="video/webm" />
