@@ -193,13 +193,12 @@ export default function ProjectDisplay({ projectId=0, setProjectId, part="header
           <Splide
             key={projectId}
             aria-label="Screenshots"
-            className="flex items-center justify-end h-full"
             options={{ autoHeight: true }}
           >
             {projects[projectId]?.images.map((src, idx) =>
-              <SplideSlide key={idx} className="flex items-start justify-center w-full">
+              <SplideSlide key={idx} className="flex items-center max-h-[200px] xl:max-h-[300px] justify-center w-full">
                 <img
-                  className="cursor-pointer object-contain h-1/4"
+                  className="cursor-pointer object-contain h-full"
                   src={src}
                   onClick={() => setPopup(src)}
                   alt={idx}
