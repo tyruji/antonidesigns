@@ -71,14 +71,10 @@ export default function DraggableTimeline({ projects, projectId, setProjectId })
     return () => cancelAnimationFrame(animationId);
   }, [targetX]);
 
-  const onMouseMove = (e) => {
-    if (!isDragging) return;
-    
-    const delta = dragStartX.current - e.clientX;
-    const newX = dragStartPos.current + delta;
-  
+  // handle dragging (unified for pointer events)
+  const handleDrag = (newX) => {
     setTargetX(newX);
-  
+
     // find closest project
     let closestIndex = 0;
     let closestDist = Infinity;
@@ -89,7 +85,7 @@ export default function DraggableTimeline({ projects, projectId, setProjectId })
         closestIndex = i;
       }
     });
-  
+
     setProjectId(closestIndex);
   };
 
@@ -98,19 +94,28 @@ export default function DraggableTimeline({ projects, projectId, setProjectId })
       <div
         ref={timelineRef}
         className="z-20 relative py-10 w-full rounded cursor-grab active:cursor-grabbing overflow-hidden"
-        onMouseMove={onMouseMove}
-        onMouseLeave={() => {
-          setIsDragging(false);
-          setTargetX(positions[projectId]);
-        }}
-        onMouseUp={() => {
-          setIsDragging(false);
-          setTargetX(positions[projectId]);
-        }}
-        onMouseDown={(e) => {
+        onPointerDown={(e) => {
           setIsDragging(true);
           dragStartX.current = e.clientX;
           dragStartPos.current = xPos;
+          // capture pointer so drag keeps working outside element
+          e.currentTarget.setPointerCapture(e.pointerId);
+        }}
+        onPointerMove={(e) => {
+          if (!isDragging) return;
+          const delta = dragStartX.current - e.clientX;
+          const newX = dragStartPos.current + delta;
+          handleDrag(newX);
+        }}
+        onPointerUp={(e) => {
+          setIsDragging(false);
+          setTargetX(positions[projectId]);
+          e.currentTarget.releasePointerCapture(e.pointerId);
+        }}
+        onPointerLeave={() => {
+          // optional: stop dragging when pointer leaves
+          setIsDragging(false);
+          setTargetX(positions[projectId]);
         }}
       >
         <div className="w-full bg-secondary h-2" />
