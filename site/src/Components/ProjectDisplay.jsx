@@ -193,7 +193,7 @@ export default function ProjectDisplay({ projectId=0, setProjectId, part="header
           <Splide
             key={projectId}
             aria-label="Screenshots"
-            options={{ height: '15rem' }}
+            options={{ height: `${imgHeight}px` }}
           >
             {projects[projectId]?.images.map((src, idx) =>
               <SplideSlide key={"slide" + idx} className="flex items-start justify-center">
