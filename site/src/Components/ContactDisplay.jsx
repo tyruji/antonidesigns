@@ -5,15 +5,22 @@ import ButtonSpacer from "./ButtonSpacer.jsx";
 export default function ContactDisplay({ part="header" }) {
   const containerRef = useRef(null);
   const [imgHeight, setImgHeight] = useState(0);
+  const [containerDims, setContainerDims] = useState({width: 0, height: 0});
+  const { width, height } = containerDims;
+  const fontSize = Math.max(
+    Math.min(width/16, 48), // scale up to a max, e.g. 48px
+    7 // min
+  );
   
   useEffect(() => {
     function measure() {
       if (containerRef.current) {
-        // Where is the carousel in the viewport?
         const rect = containerRef.current.getBoundingClientRect();
-        // Remaining height = window height - distance from top of carousel container
-        const remaining = window.innerHeight - rect.top - 32; // -32px for a little safety margin/padding
-        setImgHeight(Math.max(remaining, 100)); // Don't go below 100px
+        setContainerDims({
+          width: rect.width,
+          height: rect.height,
+          top: rect.top,
+        });
       }
     }
     measure();
@@ -27,7 +34,6 @@ export default function ContactDisplay({ part="header" }) {
         <h1>
           Get in Touch
         </h1>
-        
       </div>
     );
   }
@@ -51,16 +57,16 @@ export default function ContactDisplay({ part="header" }) {
   }
   
   return (
-    <div ref={containerRef} className="transition-colors ease-in-out text-primary h-full w-fit flex justify-center sm:justify-start">
-      <div className="flex flex-col justify-center text-md sm:text-2xl md:text-4xl xl:text-5xl space-y-[1em]">
+    <div ref={containerRef} className="transition-colors ease-in-out text-primary flex flex-col h-full justify-end">
+      <div style={{ fontSize: fontSize + 'px' }} className="flex flex-col space-y-[1em]">
         {/* <Link link="" text="LinkedIn"/> */}
         <Link link="https://www.linkedin.com/in/antoni-ferkaluk/" text="LinkedIn" />
         <Link link="https://github.com/tyruji/" text="GitHub" />
         <Link link="mailto:antoniferkaluk5@gmail.com" text="antoniferkaluk5@gmail.com"/>
       </div>
-      {/* <div className="">
+      <div className="">
         <ButtonSpacer />
-      </div> */}
+      </div>
     </div>
   );
 }

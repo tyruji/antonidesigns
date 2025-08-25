@@ -13,10 +13,10 @@ export default function SectionWrapper({ section, children }) {
         { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" }
       );
     }
-  }, [section]); // ✅ Re-run when section changes
+  }, [section]); // Re-run when section changes
 
   return (
-    <div ref={contentRef} key={section}>
+    <div ref={contentRef} key={section} className="h-full flex flex-col">
       {children}
     </div>
   );
