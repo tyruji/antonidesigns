@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import ButtonSpacer from "./ButtonSpacer.jsx";
 
 // part is "header" or "content"
-export default function AboutMeDisplay({ part="header" }) {
+export default function AboutMeDisplay({ part="header", onClickConnect }) {
   const containerRef = useRef(null);
   const [imgHeight, setImgHeight] = useState(0);
   
@@ -90,20 +90,41 @@ export default function AboutMeDisplay({ part="header" }) {
   }
   
   return (
-    <div ref={containerRef} className="-mt-1 transition-colors ease-in-out text-primary w-fit h-1/2 flex">
+    <div ref={containerRef} className="py-2 transition-colors ease-in-out text-primary w-fit">
       <div
         className="flex flex-col justify-start space-y-[1em]"
-        style={{ fontSize: "clamp(0.8rem, 1.6vw, 1.6rem)" }}
+        style={{ fontSize: `${imgHeight/30}px` }}
       >
         <div className="flex">
-          <p>I've been programming since 14 years old, started out in game development and been growing ever since.</p>
-          <div className="px-4 text-secondary">
+          <div className="flex flex-col space-y-[1em]">
+            
+            <div className="justify-center flex">
+              <div className="max-w-4/5">
+                <p className="italic">At no point am I not building something.</p>
+              </div>
+            </div>
+              
+            <p>
+              At 14 years old, I started with game development as a designer and programmer. Starting with only an idea and growing it into a finished product quickly became my biggest interest.
+            </p>
+            <p>
+              Today, I specialize in AI, SaaS products, backend systems, web applications and websites.
+            </p>
+            <p>
+              <p>Interested in working together?</p>
+              Let's<span> </span>
+              <span
+                className="underline hover:text-primary/50 transition cursor-pointer"
+                onClick={onClickConnect} // this opens the contact menu
+              >connect!</span>
+            </p>
+            
+          </div>
+          
+          <div className="px-2 text-secondary">
             <ButtonSpacer />
           </div>
         </div>
-        <p>
-          I always strive for creativity, I love seeing my ideas come to life.
-        </p>
       </div>
         
     </div>

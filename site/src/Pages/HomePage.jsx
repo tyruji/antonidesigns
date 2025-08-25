@@ -131,7 +131,7 @@ export default function HomePage({ throwCube=true }) {
             <ProjectDisplay projectId={projectId} setProjectId={setProjectId} part="content" />
           )}
           {section === "about me" && (
-            <AboutMeDisplay part="content" />
+            <AboutMeDisplay part="content" onClickConnect={() => setSection("contact")} />
           )}
           {section === "contact" && (
             <ContactDisplay part="content" />
