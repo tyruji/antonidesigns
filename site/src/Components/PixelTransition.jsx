@@ -65,6 +65,7 @@ export default function PixelTransition({ onComplete }) {
             height: `${sq.height}px`,
             top: `${sq.top}px`,
             left: `${sq.left}px`,
+            transitionDuration: "0ms", transitionTimingFunction: "unset"
           }}
         />
       ))}

@@ -140,12 +140,15 @@ export default function DraggableTimeline({ projects, projectId, setProjectId })
       </div>
 
       <div
+        style={{ transitionDuration: "0ms", transitionTimingFunction: "unset" }}
         className="absolute left-1/2 w-full h-2/3 text-sm font-semibold transition-opacity duration-300">
         {positions.map((pos, i) => {
           return (
             <div
               key={i}
-              style={{ left: `${pos - xPos}px`, fontSize: `${i === projectId ? minSpace/10 : minSpace/15}px`  }}
+              style={{ left: `${pos - xPos}px`, fontSize: `${i === projectId ? minSpace/10 : minSpace/15}px`,
+                  transitionDuration: "0ms", transitionTimingFunction: "unset"
+                }}
               className="flex flex-col space-y-2 h-full items-center absolute text-nowrap -translate-x-1/2"
             >
               <span>

@@ -16,7 +16,7 @@ export default function SectionWrapper({ section, children }) {
   }, [section]); // Re-run when section changes
 
   return (
-    <div ref={contentRef} key={section} className="h-full flex flex-col">
+    <div ref={contentRef} key={section} className="h-full flex flex-col overflow-hidden">
       {children}
     </div>
   );

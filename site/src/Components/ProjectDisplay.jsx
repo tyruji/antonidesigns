@@ -210,6 +210,7 @@ export default function ProjectDisplay({ projectId=0, setProjectId, part="header
           <video
             className="object-contain"
             autoPlay loop muted playsInline
+            style={{ height: `${imgHeight ? .8 * imgHeight : 100}px` }}
           >
             <source src={projects[projectId].video} type="video/webm" />
           </video>
