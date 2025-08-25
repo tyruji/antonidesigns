@@ -154,8 +154,8 @@ export default function ProjectDisplay({ projectId=0, setProjectId, part="header
   }
   
   return (
-    <div ref={containerRef} className="py-2 h-full transition-colors ease-in-out text-primary w-fit flex justify-center sm:justify-start">
-      <SectionWrapper section={projectId} className="h-full">
+    <div ref={containerRef} className="flex-1 min-h-0 py-2 transition-colors ease-in-out text-primary w-full justify-center sm:justify-start">
+      <SectionWrapper section={projectId} className="">
         <div ref={headerRef} className="flex justify-between w-full">
           <div className="text-xl sm:text-3xl md:text-4xl xl:text-5xl">
             <a
@@ -182,7 +182,7 @@ export default function ProjectDisplay({ projectId=0, setProjectId, part="header
         <div className="flex my-3">
           <div className="flex z-20">
             {projects[projectId].stack.map((l, i) => {
-              return <div className="w-7 md:w-10">
+              return <div key={`projectDesc${i}`} className="w-7 md:w-10">
                   {l}
                 </div>
             })}
@@ -193,15 +193,15 @@ export default function ProjectDisplay({ projectId=0, setProjectId, part="header
           <Splide
             key={projectId}
             aria-label="Screenshots"
-            options={{ autoHeight: true }}
+            options={{ height: '15rem' }}
           >
             {projects[projectId]?.images.map((src, idx) =>
-              <SplideSlide key={idx} className="flex items-center max-h-[200px] xl:max-h-[300px] justify-center w-full">
+              <SplideSlide key={"slide" + idx} className="flex items-start justify-center">
                 <img
-                  className="cursor-pointer object-contain h-full"
                   src={src}
+                  className="object-contain max-h-[60vh] cursor-pointer"
                   onClick={() => setPopup(src)}
-                  alt={idx}
+                  alt={`Project screenshot ${idx + 1}`}
                 />
               </SplideSlide>
             )}  
