@@ -154,7 +154,7 @@ export default function ProjectDisplay({ projectId=0, setProjectId, part="header
   }
   
   return (
-    <div ref={containerRef} className="flex-1 min-h-0 py-2 transition-colors ease-in-out text-primary w-full justify-center sm:justify-start">
+    <div ref={containerRef} className="py-2 transition-colors ease-in-out text-primary w-full justify-center sm:justify-start">
       <SectionWrapper section={projectId} className="">
         <div ref={headerRef} className="flex justify-between w-full">
           <div className="text-xl sm:text-3xl md:text-4xl xl:text-5xl">
@@ -193,7 +193,7 @@ export default function ProjectDisplay({ projectId=0, setProjectId, part="header
           <Splide
             key={projectId}
             aria-label="Screenshots"
-            options={{ height: `${imgHeight}px` }}
+            options={{ height: `${imgHeight ? .8 * imgHeight : 100}px` }}
           >
             {projects[projectId]?.images.map((src, idx) =>
               <SplideSlide key={"slide" + idx} className="flex items-start justify-center">
