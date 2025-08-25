@@ -120,7 +120,7 @@ export default function HomePage({ throwCube=true }) {
           <MenuButton />
           <MenuButton option="projects" />
           <MenuButton option="about me" />
-          <MenuButton option="offer" /> 
+          {/* <MenuButton option="offer" />  */}
           <MenuButton option="contact"/>
         </div>
       </div>

@@ -4,16 +4,22 @@ import ButtonSpacer from "./ButtonSpacer.jsx";
 // part is "header" or "content"
 export default function AboutMeDisplay({ part="header", onClickConnect }) {
   const containerRef = useRef(null);
-  const [imgHeight, setImgHeight] = useState(0);
+  const [containerDims, setContainerDims] = useState({width: 0, height: 0});
+  const { width, height } = containerDims;
+  const fontSize = Math.max(
+    Math.min(((width/19)+(height/19))/2 , 48), // scale up to a max, e.g. 48px
+    7 // min
+  );
   
   useEffect(() => {
     function measure() {
       if (containerRef.current) {
-        // Where is the carousel in the viewport?
         const rect = containerRef.current.getBoundingClientRect();
-        // Remaining height = window height - distance from top of carousel container
-        const remaining = window.innerHeight - rect.top - 32; // -32px for a little safety margin/padding
-        setImgHeight(Math.max(remaining, 100)); // Don't go below 100px
+        setContainerDims({
+          width: rect.width,
+          height: rect.height,
+          top: rect.top,
+        });
       }
     }
     measure();
@@ -93,38 +99,39 @@ export default function AboutMeDisplay({ part="header", onClickConnect }) {
     <div ref={containerRef} className="py-2 transition-colors ease-in-out text-primary w-fit">
       <div
         className="flex flex-col justify-start space-y-[1em]"
-        style={{ fontSize: `${imgHeight/30}px` }}
+        style={{ fontSize: fontSize + 'px' }}
       >
         <div className="flex">
-          <div className="flex flex-col space-y-[1em]">
+          <div className="flex justify-end flex-col space-y-[1em]">
             
             <div className="justify-center flex">
               <div className="max-w-4/5">
                 <p className="italic">At no point am I not building something.</p>
               </div>
             </div>
-              
+            
             <p>
               At 14 years old, I started with game development as a designer and programmer. Starting with only an idea and growing it into a finished product quickly became my biggest interest.
             </p>
-            <p>
-              Today, I specialize in AI, SaaS products, backend systems, web applications and websites.
-            </p>
-            <p>
-              <p>Interested in working together?</p>
-              Let's<span> </span>
-              <span
-                className="underline hover:text-primary/50 transition cursor-pointer"
-                onClick={onClickConnect} // this opens the contact menu
-              >connect!</span>
-            </p>
-            
+
           </div>
           
-          <div className="px-2 text-secondary">
+          <div className="flex flex-col px-4 text-secondary">
             <ButtonSpacer />
           </div>
         </div>
+        
+        <p>
+          Today, I specialize in AI, SaaS products, backend systems, web applications and websites.
+        </p>
+        <p>
+          <p>Interested in working together?</p>
+          Let's<span> </span>
+          <span
+            className="underline hover:text-primary/50 transition cursor-pointer"
+            onClick={onClickConnect} // this opens the contact menu
+          >connect!</span>
+        </p>
       </div>
         
     </div>
