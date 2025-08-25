@@ -7,7 +7,7 @@ export default function AboutMeDisplay({ part="header", onClickConnect }) {
   const [containerDims, setContainerDims] = useState({width: 0, height: 0});
   const { width, height } = containerDims;
   const fontSize = Math.max(
-    Math.min(((width/19)+(height/19))/2 , 48), // scale up to a max, e.g. 48px
+    Math.min(((width/20)+(height/35))/2 , 48), // scale up to a max, e.g. 48px
     7 // min
   );
   
@@ -124,14 +124,17 @@ export default function AboutMeDisplay({ part="header", onClickConnect }) {
         <p>
           Today, I specialize in AI, SaaS products, backend systems, web applications and websites.
         </p>
-        <p>
+        
+        <div>
           <p>Interested in working together?</p>
-          Let's<span> </span>
-          <span
-            className="underline hover:text-primary/50 transition cursor-pointer"
-            onClick={onClickConnect} // this opens the contact menu
-          >connect!</span>
-        </p>
+          <p>
+            Let's<span> </span>
+            <span
+              className="underline hover:text-primary/50 transition cursor-pointer"
+              onClick={onClickConnect} // this opens the contact menu
+            >connect!</span>
+          </p>  
+        </div>
       </div>
         
     </div>
