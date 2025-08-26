@@ -31,7 +31,7 @@ export default function DraggableTimeline({ projects, projectId, setProjectId })
       const minDiff = Math.min(...diffs);
       
       const maxSpace = width / 2;
-      setMinSpace(Math.max(width / 4, 100));
+      setMinSpace(Math.max(width / 4, 200));
       
       let last_ts = maxDate;
       let last_pos = 0;
@@ -141,12 +141,12 @@ export default function DraggableTimeline({ projects, projectId, setProjectId })
 
       <div
         style={{ transitionDuration: "0ms", transitionTimingFunction: "unset" }}
-        className="absolute left-1/2 w-full h-2/3 text-sm font-semibold transition-opacity duration-300">
+        className="absolute left-1/2 w-full h-9/10 text-sm font-semibold transition-opacity duration-300">
         {positions.map((pos, i) => {
           return (
             <div
               key={i}
-              style={{ left: `${pos - xPos}px`, fontSize: `${Math.min(i === projectId ? minSpace/10 : minSpace/15, 32)}px`,
+              style={{ left: `${pos - xPos}px`, fontSize: `${Math.min(i === projectId ? minSpace/10 : minSpace/15, 16)}px`,
                   transitionDuration: "0ms", transitionTimingFunction: "unset"
                 }}
               className="flex flex-col space-y-2 h-full items-center absolute text-nowrap -translate-x-1/2"
@@ -154,7 +154,11 @@ export default function DraggableTimeline({ projects, projectId, setProjectId })
               <span>
                 {projects[i].date.toLocaleString("en-US", { year: "numeric", month: "short" })}
               </span>
-              <div className="mb-2 h-1/2 w-2 bg-secondary" />
+              {i % 2 === 0 ? (
+                <div className="h-full mb-2 w-2 bg-secondary" />
+              ) : (
+                <div className="h-8 mb-2 w-2 bg-secondary" />
+              )}
               {i === projectId ? (
                 <b>{projects[i].name}</b>
               ) : (

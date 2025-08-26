@@ -54,8 +54,9 @@ const SquareAnimation = ({ onAnimationComplete }) => {
       <div className="relative w-full h-full">
         {[...Array(numSquares)].map((_, i) => (
           <div
+            style={{ transitionDuration: "0ms", transitionTimingFunction: "unset" }}
             key={i}
-            className="absolute inset-0 square border-3 border-secondary"
+            className="absolute inset-0 square border-4 border-secondary"
           />
         ))}
       </div>
