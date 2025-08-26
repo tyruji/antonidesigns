@@ -146,7 +146,7 @@ export default function DraggableTimeline({ projects, projectId, setProjectId })
           return (
             <div
               key={i}
-              style={{ left: `${pos - xPos}px`, fontSize: `${i === projectId ? minSpace/10 : minSpace/15}px`,
+              style={{ left: `${pos - xPos}px`, fontSize: `${Min(i === projectId ? minSpace/10 : minSpace/15, 32)}px`,
                   transitionDuration: "0ms", transitionTimingFunction: "unset"
                 }}
               className="flex flex-col space-y-2 h-full items-center absolute text-nowrap -translate-x-1/2"
