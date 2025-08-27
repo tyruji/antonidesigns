@@ -7,7 +7,7 @@ import PixelTransition from "./Components/PixelTransition.jsx";
 const SquareAnimation = ({ onAnimationComplete }) => {
   const containerRef = useRef(null);
   const [done, setDone] = useState(false);
-  const numSquares = 4;
+  const numSquares = 3;
   
   useEffect(() => {
     const squares = containerRef.current.querySelectorAll(".square");
@@ -27,10 +27,10 @@ const SquareAnimation = ({ onAnimationComplete }) => {
         { 
           scale: (i + 1) / numSquares, 
           opacity: 1, 
-          duration: 0.25, 
+          duration: 0.55, 
           ease: "power2.out" 
         },
-        i * 0.25 // delay each square by 0.5s
+        i * 0.35 // delay each square by 0.5s
       );
     });
     
@@ -38,7 +38,7 @@ const SquareAnimation = ({ onAnimationComplete }) => {
     tl.to(squares, {
       opacity: 0,
       scale: 1,
-      duration: 1.5,
+      duration: 1.,
       ease: "power2.inOut"
     });
     
@@ -52,13 +52,18 @@ const SquareAnimation = ({ onAnimationComplete }) => {
       className="relative w-screen h-[100dvh] flex justify-center items-center overflow-hidden"
     >
       <div className="relative w-full h-full">
-        {[...Array(numSquares)].map((_, i) => (
-          <div
-            style={{ transitionDuration: "0ms", transitionTimingFunction: "unset" }}
-            key={i}
-            className="absolute inset-0 square border-4 border-secondary"
-          />
-        ))}
+        {[...Array(numSquares)].map((_, i) =>
+          i === numSquares - 1 ? (
+            <div key={i} className="square opacity-0 w-full h-full flex items-center justify-center">
+              <h1 className="text-secondary font-bold">Antoni Ferkaluk Portfolio</h1>
+            </div>
+          ) : (
+            <div
+              key={i}
+              className="absolute inset-0 square border-2 border-secondary"
+            />
+          )
+        )}
       </div>
     </div>
   );
