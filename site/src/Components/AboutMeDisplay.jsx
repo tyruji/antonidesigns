@@ -96,10 +96,10 @@ export default function AboutMeDisplay({ part="header", onClickConnect }) {
   }
   
   return (
-    <div ref={containerRef} className="py-2 transition-colors ease-in-out text-primary w-fit">
+    <div ref={containerRef} className="py-2 transition-colors ease-in-out text-primary w-fit overflow-auto">
       <div
-        className="flex flex-col justify-start space-y-[1em]"
-        style={{ fontSize: fontSize + 'px' }}
+        className="flex flex-col justify-start space-y-[1em] text-md sm:text-xl md:text-2xl"
+        // style={{ fontSize: fontSize + 'px' }}
       >
         <div className="flex">
           <div className="flex justify-end flex-col space-y-[1em]">
@@ -110,26 +110,27 @@ export default function AboutMeDisplay({ part="header", onClickConnect }) {
               </div>
             </div>
             
-            <p>
+            <p style={{ transitionDuration: "0ms", transitionTimingFunction: "unset" }}>
               At 14 years old, I started with game development as a designer and programmer. Starting with only an idea and growing it into a finished product quickly became my biggest interest.
             </p>
 
           </div>
           
-          <div className="flex flex-col px-4 text-secondary">
+          <div className="flex flex-col px-4">
             <ButtonSpacer />
           </div>
         </div>
         
-        <p>
+        <p style={{ transitionDuration: "0ms", transitionTimingFunction: "unset" }}>
           Today, I specialize in AI, SaaS products, backend systems, web applications and websites.
         </p>
         
         <div>
-          <p>Interested in working together?</p>
-          <p>
+          <p style={{ transitionDuration: "0ms", transitionTimingFunction: "unset" }}>Interested in working together?</p>
+          <p style={{ transitionDuration: "0ms", transitionTimingFunction: "unset" }}>
             Let's<span> </span>
             <span
+              style={{ transitionDuration: "0ms", transitionTimingFunction: "unset" }}
               className="underline hover:text-primary/50 transition cursor-pointer"
               onClick={onClickConnect} // this opens the contact menu
             >connect!</span>
