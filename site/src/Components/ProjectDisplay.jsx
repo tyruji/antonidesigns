@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
-import '@splidejs/react-splide/css';
+import '@splidejs/react-splide/css/core';
 import { createPortal } from "react-dom";
 import DraggableTimeline from "./DraggableTimeline.jsx";
 import SectionWrapper from "./SectionWrapper.jsx";
@@ -191,13 +191,17 @@ export default function ProjectDisplay({ projectId=0, setProjectId, part="header
       
         {projects[projectId].images ? (
           <Splide
+            style={{ transitionDuration: "0ms", transitionTimingFunction: "unset" }}
             key={projectId}
             aria-label="Screenshots"
-            options={{ height: `${imgHeight ? .8 * imgHeight : 100}px` }}
+            options={{ pagination: false, drag: 'free', perPage: 2, gap: '1rem', height: `${imgHeight ? .8 * imgHeight : 100}px`, arrows: false }}
           >
             {projects[projectId]?.images.map((src, idx) =>
-              <SplideSlide key={"slide" + idx} className="flex items-start justify-center">
+              <SplideSlide
+                style={{ transitionDuration: "0ms", transitionTimingFunction: "unset" }}
+                key={"slide" + idx} className="flex items-start justify-center">
                 <img
+                  style={{ transitionDuration: "0ms", transitionTimingFunction: "unset" }}
                   src={src}
                   className="object-contain max-h-[60vh] cursor-pointer"
                   onClick={() => setPopup(src)}
